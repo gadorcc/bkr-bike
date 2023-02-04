@@ -5,7 +5,7 @@ class CreateBikes < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :type
       t.float :price
-      t.boolean :status
+      t.boolean :status, default: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

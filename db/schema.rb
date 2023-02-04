@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_161630) do
     t.text "description"
     t.string "type"
     t.float "price"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
