@@ -2,7 +2,7 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bike = Bike.all
+    @bikes = Bike.all
   end
 
   def show
@@ -14,18 +14,27 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
-    @bike.save
+    if @bike.save
+      redirect_to bikes_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
-    @bike.update(bike_params)
+    if @bike.update(bike_params)
+      redirect_to bike_path(@bike)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @bike.destroy
+    redirect_to bikes_path, status: :see_other
   end
 
   private
