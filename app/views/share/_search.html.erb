@@ -1,0 +1,18 @@
+
+<div class="container flex">
+  <div class="row">
+    <% bike_type = %w(electric road mountain folding kids hybrid city trike)%>
+    <% bike_type.each do |type| %>
+    <div class="col text-center">
+      <button type="button" class="btn btn-light"><%=type.capitalize%></div></button>
+    <% end %>
+  </div>
+</div>
+
+
+<%# <a class="d-block text-body-emphasis text-decoration-none" href="/icons/bicycle/"> %>
+<%# <div class="px-3 py-4 mb-2 bg-body-secondary text-center rounded"> %>
+<%# <i class="bi bi-bicycle"></i> %>
+<%# </div> %>
+<%# <div class="name text-muted text-decoration-none text-center pt-1">bicycle</div> %>
+<%# </a> %>
