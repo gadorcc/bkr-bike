@@ -4,7 +4,7 @@ class Bike < ApplicationRecord
   validates :title, presence: true
   validates :bike_type, presence: true
   validates :description, length: { minimum: 15 }
-  TYPE = %w(electric road mountain folding kids hybrid city trike)
+  TYPE = %w(Electric Road Mountain Folding Kids Hybrid City Trike)
   validates :bike_type, inclusion: { in: TYPE }
   validates :price, presence: true, numericality: { only_float: true }
   has_one_attached :photo
