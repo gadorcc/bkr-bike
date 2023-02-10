@@ -1,31 +1,33 @@
-<div class="container">
-  <h1 class="my-5">Bikes in your area</h1>
-  <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
-    <% @bikes.each do |bike| %>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
-          <div class="card-body">
-            <h5 class="card-title"><%= bike.title %></h5>
-            <p class="card-text">
-              <%= bike.bike_type %> <br>
-              <%= bike.description %>
-              <i class="bi bi-currency-pound"><%= bike.price %></i>
-            </p>
-            <div class="">
-              <a href="<%= bike_path(bike) %>" class="btn btn-primary mr-2">View</a>
-              <a href="<%= edit_bike_path(bike) %>" class="btn btn-secondary mr-2">Edit</a>
-              <%# <%= link_to "Delete", bike_path(bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<<div class="container">
+   <h1 class="my-5">Bikes in your area</h1>
+   <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+     <% @bikes.each do |bike| %>
+       <div class="col-md-4">
+         <div class="card">
+           <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+           <div class="card-body">
+             <h5 class="card-title"><%= bike.title %></h5>
+             <p >
+             <p class="card-text">
+               <a href="#" class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-info-emphasis bg-info-subtle border border-info-subtle rounded-2"><%= bike.bike_type %></a>
+                <br>
+               <%= bike.description %>
+               <i class="bi bi-currency-pound"><%= bike.price %></i>
+             </p>
+             <div class="">
+               <a href="<%= bike_path(bike) %>" class="btn btn-primary mr-2">View</a>
+               <a href="<%= edit_bike_path(bike) %>" class="btn btn-secondary mr-2">Edit</a>
+               <%# <%= link_to "Delete", bike_path(bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+             </div>
+           </div>
+         </div>
+       </div>
+     <% end %>
+   </div>
+ </div>
 
-<br>
+ <br>
 
-<div class="text-center my-5">
-  <%= link_to 'New Bike', new_bike_path, class: "btn btn-primary" %>
-</div>
+ <div class="text-center my-5">
+   <%= link_to 'Add Bike', new_bike_path, class: "btn btn-primary" %>
+ </div>

@@ -1,3 +1,20 @@
-<h1>#Show bikes</h1>
-<%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill %>
-<%= link_to "View All Bikes", bikes_path %>
+<main>
+<div class="container py-4">
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
+      </div>
+      <div class="col-md-8">
+      <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
+        <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
+        <p class="fs-4 d-inline-block"><%= @bike.description %></p>
+<p class="fs-4 d-inline-block mx-3">Price: <%= @bike.price %></p>
+<button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<main>
