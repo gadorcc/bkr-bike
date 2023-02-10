@@ -7,5 +7,5 @@ class Bike < ApplicationRecord
   TYPE = %w(electric road mountain folding kids hybrid city trike)
   validates :bike_type, inclusion: { in: TYPE }
   validates :price, presence: true, numericality: { only_float: true }
-  has_many_attached :photos
+  has_one_attached :photo
 end

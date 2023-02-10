@@ -1,2 +1,3 @@
 <h1>#Show bikes</h1>
+<%= cl_image_tag @bike.photo.key, height: 300, width: 400, crop: :fill %>
 <%= link_to "View All Bikes", bikes_path %>
