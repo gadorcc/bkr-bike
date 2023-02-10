@@ -1,4 +1,4 @@
-<<div class="container">
+<div class="container">
    <h1 class="my-5">Bikes in your area</h1>
    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
      <% @bikes.each do |bike| %>
@@ -11,7 +11,7 @@
              <p class="card-text">
                <a href="#" class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-info-emphasis bg-info-subtle border border-info-subtle rounded-2"><%= bike.bike_type %></a>
                 <br>
-               <%= bike.description %>
+               <%= bike.description.truncate_words(25) %>
                <i class="bi bi-currency-pound"><%= bike.price %></i>
              </p>
              <div class="">
