@@ -35,14 +35,14 @@
                <%= bike.description.truncate_words(25) %>
                <div class="row">
               <div class="col">
-                <p class="card-text">£<%= bike.price%> <i class="fa-solid fa-coins"></i><p>
+                <p class="card-text"><%= number_to_currency bike.price, unit: "£" %><p>
               </div>
             </div>
              </p>
              <div class="">
                <a href="<%= bike_path(bike) %>" class="btn btn-primary mr-2">View</a>
                <a href="<%= edit_bike_path(bike) %>" class="btn btn-secondary mr-2">Edit</a>
-               <%= link_to "Delete", bike_path(bike), method: :destroy, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+               <%# <%= link_to "Delete", bike_path(bike), method: :destroy, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
              </div>
            </div>
          </div>
