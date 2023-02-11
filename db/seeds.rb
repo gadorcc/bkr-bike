@@ -39,7 +39,7 @@ users.each do |user|
   bike = Bike.new(
     title: ["Amazing dirty bike", "Cool reliable biky picky","Bike me baby", "Colourful tiny bike"].sample,
     description: ["This bike is light, stiff, and comfortable. But you don’t need to scale step climbs to feel the Ultimate’s trademark performance. Experience pure freedom from the first turn of the crank.", "With fast wheels, comfortable tyres, pinpoint handling and long-distance geometry, this bike delivers control comfort and speed in equal measure. A great place to be for long rides, even on the roughest roads"].sample,
-    bike_type: %w[electric road mountain folding kids hybrid city trike].sample,
+    bike_type: %w[Electric Road Mountain Folding Kids Hybrid City Trike].sample,
     price: rand(5..45),
     user_id: user.id
   )

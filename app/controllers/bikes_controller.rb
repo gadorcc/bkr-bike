@@ -2,7 +2,11 @@ class BikesController < ApplicationController
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bikes = Bike.all
+    if params[:query].present?
+      @bikes = Bike.where(bike_type: params[:query])
+    else
+      @bikes = Bike.all
+    end
   end
 
   def show
@@ -40,7 +44,7 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo)
+    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo, :query)
   end
 
   def set_bike
