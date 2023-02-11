@@ -12,10 +12,12 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-
 p.card-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
+}
+p.d-inline-flex.mb-3.px-2.py-1.fw-semibold.text-success-emphasis.bg-success-subtle.border.border-success-subtle.rounded-2 {
+  text-transform: capitalize;
 }
