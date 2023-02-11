@@ -21,3 +21,8 @@ p.card-text {
 p.d-inline-flex.mb-3.px-2.py-1.fw-semibold.text-success-emphasis.bg-success-subtle.border.border-success-subtle.rounded-2 {
   text-transform: capitalize;
 }
+
+img.card-img-top {
+  object-fit: fit;
+  max-height: 250px;
+}
