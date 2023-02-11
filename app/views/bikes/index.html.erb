@@ -3,10 +3,14 @@
   <div class="container m-4">
     <div class="container flex">
       <div class="row">
-        <% bike_type = %w(Electric Road Mountain Folding Kids Hybrid City Trike)%>
+        <% bike_type = %w(Electric Road Mountain Folding Kids Hybrid City Trike All)%>
         <% bike_type.each do |type| %>
         <div class="col text-center">
-        <a class="btn btn-light" <%= link_to type, bikes_path(query: type) %>
+          <% if type == 'All' %>
+            <%= link_to type, bikes_path, class: "btn btn-primary mr-2" %>
+          <% else %>
+            <%= link_to type, bikes_path(query: type), class: "btn btn-light" %>
+          <% end %>
         </div>
         <% end %>
       </div>
