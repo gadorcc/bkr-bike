@@ -16,7 +16,9 @@
      <% @bikes.each do |bike| %>
        <div class="col-md-4">
          <div class="card">
-           <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+          <% if bike.photo.key %>
+            <img src="<%=cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+          <% end %>
            <div class="card-body">
              <h5 class="card-title"><%= bike.title %></h5>
              <p >

@@ -18,8 +18,9 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
+    @bike.user = current_user
     if @bike.save
-      redirect_to bikes_path
+      redirect_to bike_path(@bike), notice: 'Bike post was successfully created!'
     else
       render :new, status: :unprocessable_entity
     end
