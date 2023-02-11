@@ -2,6 +2,7 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :bike_type %>
+  <%= f.input :bike_type, :collection => %w[electric road mountain folding kids hybrid city trike] %>
   <%= f.input :price %>
   <%= f.input :photo, as: :file %>
   <%= f.submit class: "btn btn-primary" %>
