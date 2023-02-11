@@ -16,8 +16,10 @@
      <% @bikes.each do |bike| %>
        <div class="col-md-4">
          <div class="card">
-          <% if bike.photo.key %>
-            <img src="<%=cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+          <% if cloudinary_url(bike.photo.key) %>
+            <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+          <% else %>
+            <img src="https://www.bikehighway.com/media/catalog/product/cache/8dfd20b727bccb444e9ac19dde97c5ca/0/0/0002_balance_bike_-_mint_green_angled_1024x1024.jpg" class="card-img-top" alt="image">
           <% end %>
            <div class="card-body">
              <h5 class="card-title"><%= bike.title %></h5>
