@@ -33,7 +33,11 @@
              <p class="card-text">
                 <br>
                <%= bike.description.truncate_words(25) %>
-               <i class="bi bi-currency-pound"><%= bike.price %></i>
+               <div class="row">
+              <div class="col">
+                <p class="card-text">£<%= bike.price%> <i class="fa-solid fa-coins"></i><p>
+              </div>
+            </div>
              </p>
              <div class="">
                <a href="<%= bike_path(bike) %>" class="btn btn-primary mr-2">View</a>
