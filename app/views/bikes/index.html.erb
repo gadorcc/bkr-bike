@@ -1,5 +1,17 @@
 <div class="container">
-   <h1 class="my-5">Bikes in your area</h1>
+  <h1 class="my-5">Bikes in your area</h1>
+  <div class="container m-4">
+    <div class="container flex">
+      <div class="row">
+        <% bike_type = %w(Electric Road Mountain Folding Kids Hybrid City Trike)%>
+        <% bike_type.each do |type| %>
+        <div class="col text-center">
+        <a class="btn btn-light" <%= link_to type, bikes_path(query: type) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+   </div>
    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
      <% @bikes.each do |bike| %>
        <div class="col-md-4">
