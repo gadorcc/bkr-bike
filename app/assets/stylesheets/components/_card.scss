@@ -23,6 +23,7 @@ p.d-inline-flex.mb-3.px-2.py-1.fw-semibold.text-success-emphasis.bg-success-subt
 }
 
 img.card-img-top {
-  object-fit: fit;
-  max-height: 250px;
+  width: 100%;
+  max-height: 195px;
+  object-fit: cover;
 }
