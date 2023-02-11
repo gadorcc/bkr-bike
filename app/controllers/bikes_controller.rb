@@ -1,5 +1,5 @@
 class BikesController < ApplicationController
-  before_action :set_bike, only: [:show, :edit, :update, :destroy]
+  before_action :set_bike, only: %i[show edit update destroy]
 
   def index
     if params[:query].present?
@@ -38,6 +38,7 @@ class BikesController < ApplicationController
   end
 
   def destroy
+    @bike = Bike.find
     @bike.destroy
     redirect_to bikes_path, status: :see_other
   end
