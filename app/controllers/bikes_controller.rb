@@ -6,6 +6,12 @@ class BikesController < ApplicationController
       @bikes = Bike.where(bike_type: params[:query])
     else
       @bikes = Bike.all
+      @markers = @bikes.geocoded.map do |bike|
+        {
+          lat: bike.latitude,
+          lng: bike.longitude
+        }
+      end
     end
   end
 
@@ -46,7 +52,7 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo, :query)
+    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo, :query, :bike_postcode2)
   end
 
   def set_bike

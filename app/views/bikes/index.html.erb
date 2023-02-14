@@ -16,6 +16,18 @@
       </div>
     </div>
    </div>
+   <div id='map' style='width: 400px; height: 300px;'
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['pk.eyJ1IjoiZ2Fkb3JjYyIsImEiOiJjbGN0Zm1ibjEwemNlM3Jtc3dqMG1mOWp3In0.I8ylqWeN7-mov-_FBC_iXw'] %>">
+  </div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Fkb3JjYyIsImEiOiJjbGN0Zm1ibjEwemNlM3Jtc3dqMG1mOWp3In0.I8ylqWeN7-mov-_FBC_iXw';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11'
+    });
+    </script>
    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
      <% @bikes.each do |bike| %>
        <div class="col-md-4">
@@ -29,6 +41,7 @@
              <h5 class="card-title"><%= bike.title %></h5>
               <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">
                 <%= bike.bike_type %>
+                <%= bike.bike_postcode2 %>
                 </p>
              <p class="card-text">
                 <br>
