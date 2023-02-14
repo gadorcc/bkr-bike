@@ -33,12 +33,16 @@
              <p class="card-text">
                 <br>
                <%= bike.description.truncate_words(25) %>
-               <i class="bi bi-currency-pound"><%= number_to_currency bike.price, unit: "£" %></i>
+               <div class="row">
+              <div class="col">
+                <p class="card-text"><%= number_to_currency bike.price, unit: "£" %><p>
+              </div>
+            </div>
              </p>
              <div class="">
                <a href="<%= bike_path(bike) %>" class="btn btn-primary mr-2">View</a>
                <a href="<%= edit_bike_path(bike) %>" class="btn btn-secondary mr-2">Edit</a>
-               <%# <%= link_to "Delete", bike_path(bike), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+               <%# <%= link_to "Delete", bike_path(bike), method: :destroy, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
              </div>
            </div>
          </div>
@@ -52,3 +56,4 @@
  <div class="text-center my-5">
    <%= link_to 'Add Bike', new_bike_path, class: "btn btn-primary" %>
  </div>
+<%# hello %>
