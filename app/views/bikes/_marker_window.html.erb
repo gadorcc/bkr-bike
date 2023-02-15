@@ -1,7 +1,7 @@
-<div class="card">
+
   <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
   <h5><%= bike.title %></h5>
-  <div class="row">
+  <div class="row p-2">
     <div class="col">
       <h5>£<%= bike.price %></h5>
     </div>
@@ -9,4 +9,3 @@
       <a href="<%= bike_path(bike) %>" class="stretched-link"></a>
     </div>
   </div>
-</div>
