@@ -6,12 +6,13 @@ class BikesController < ApplicationController
       @bikes = Bike.where(bike_type: params[:query])
     else
       @bikes = Bike.all
-      @markers = @bikes.geocoded.map do |bike|
-        {
-          lat: bike.latitude,
-          lng: bike.longitude
-        }
-      end
+    end
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude,
+        marker_window_html: render_to_string(partial: "marker_window", locals: {bike: bike})
+      }
     end
   end
 
