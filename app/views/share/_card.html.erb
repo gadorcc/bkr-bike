@@ -1,5 +1,5 @@
 <% @bikes.each do |bike| %>
-<div class="col-md-4">
+<div class="col-md-3">
   <div class="card">
     <a href="<%= bike_path(bike) %>" class="stretched-link"></a>
     <% if cloudinary_url(bike.photo.key) %>
@@ -21,7 +21,6 @@
           </p>
         </div>
       </div>
-      </p>
     </div>
   </div>
 </div>
