@@ -1,0 +1,28 @@
+<% @bikes.each do |bike| %>
+<div class="col-md-4">
+  <div class="card">
+    <a href="<%= bike_path(bike) %>" class="stretched-link"></a>
+    <% if cloudinary_url(bike.photo.key) %>
+    <img src="<%= cloudinary_url(bike.photo.key) %>" class="card-img-top" alt="image">
+    <% else %>
+    <img src="https://www.bikehighway.com/media/catalog/product/cache/8dfd20b727bccb444e9ac19dde97c5ca/0/0/0002_balance_bike_-_mint_green_angled_1024x1024.jpg" class="card-img-top" alt="image">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= bike.title %></h5>
+      <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">
+        <%= bike.bike_type %>
+      </p>
+      <p class="card-text">
+        <br>
+        <%= bike.description %>
+      <div class="row">
+        <div class="col">
+          <p class="card-text"><%= number_to_currency bike.price, unit: "£" %>
+          </p>
+        </div>
+      </div>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>
