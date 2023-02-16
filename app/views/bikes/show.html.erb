@@ -1,45 +1,53 @@
-
 <main>
 <div class="container py-4">
-<%= link_to "< View All Bikes", bikes_path %>
-<div class="p-5 mb-4 bg-light rounded-3">
-  <div class="container-fluid py-5">
-    <div class="row">
-      <div class="col-md-4">
-        <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
-      </div>
-      <div class="col-md-8">
-      <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
-        <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
-        <p class="fs-4 d-inline-block"><%= @bike.description %></p>
-        <p class="fs-4 d-inline-block mx-3">Price: <%= @bike.price %></p>
-        <%total = 0%>
+  <%= link_to "< View All Bikes", bikes_path %>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
+        </div>
+        <div class="col-md-8">
+        <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
+          <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
+          <p class="fs-4 d-inline-block"><%= @bike.description %></p>
+          <p class="fs-4 d-inline-block mx-3">Price: <%= @bike.price %></p>
+        <button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button>
+        <%# Reviews total %>
+          <%total = [] %>
         <% @bike.reviews.each do |review| %>
-        <%
-        <%# <i class="bi bi-star-fill"></i> %>
-        <%= render "share/review_form" %>
-        <div class="list-group">
-        <% @bike.reviews.each do |review| %>
-          <li class="list-group-item">
-            <small>
-              <% count = 0 %>
-              <% 5.times do %>
-                <% if review.rating > count %>
-                  <i class="fa-solid fa-star"></i>
-                <% else %>
-                  <i class="fa-regular fa-star"></i>
-                <% end %>
-                <% count += 1 %>
-              <% end %>
-            </small>
-            <p><%= review.content %></p>
-          </li>
+          <%total << review.rating %>
         <% end %>
-      </div>
-<button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button>
+          <p><%=total.sum/total.length%><i class="bi bi-star-fill"></i></p>
+        <%# Reviews %>
+        <div class="list-group">
+          <% @bike.reviews.each do |review| %>
+            <li class="list-group-item">
+              <small>
+                <% count = 0 %>
+                <% 5.times do %>
+                  <% if review.rating > count %>
+                    <i class="fa-solid fa-star"></i>
+                  <% else %>
+                    <i class="fa-regular fa-star"></i>
+                  <% end %>
+                  <% count += 1 %>
+                <% end %>
+              </small>
+              <p><%= review.content %></p>
+            </li>
+          <% end %>
+        </div>
+      <%= simple_form_for [@bike, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <main>
