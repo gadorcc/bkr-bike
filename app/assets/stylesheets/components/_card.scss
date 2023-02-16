@@ -15,15 +15,13 @@
 p.card-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 p.d-inline-flex.mb-3.px-2.py-1.fw-semibold.text-success-emphasis.bg-success-subtle.border.border-success-subtle.rounded-2 {
   text-transform: capitalize;
 }
-
 img.card-img-top {
-  width: 100%;
-  max-height: 195px;
-  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  max-height: 275px;
 }

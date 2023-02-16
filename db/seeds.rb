@@ -19,7 +19,7 @@ User.create!(
   last_name: Faker::Name.last_name,
   postcode: Faker::Address.postcode,
 )
-10.times do
+2.times do
   i += 1
   puts "creating user number #{i}"
   User.create!(
