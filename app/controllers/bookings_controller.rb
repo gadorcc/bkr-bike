@@ -6,8 +6,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(start_date: "2023-02-17", end_date: "2023-02-16")
     @booking.bike = @bike
+    @booking.user = current_user
+    if @booking.save!
+      redirect_to bike_path(@bike), alert: "You successfully booked a bike!"
+    else
+      render :new
+    end
   end
 
   private

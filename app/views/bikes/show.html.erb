@@ -1,20 +1,40 @@
 
 <main>
 <div class="container py-4">
-<%= link_to "< View All Bikes", bikes_path %>
+<%= link_to "View All Bikes", bikes_path, class: "btn btn-secondary btn-sm mb-3" %>
 <div class="p-5 mb-4 bg-light rounded-3">
   <div class="container-fluid py-5">
-    <div class="row">
-      <div class="col-md-4">
-        <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
+    <div class= "containter">
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
+        </div>
+        <div class="col-md-8">
+          <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
+          <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
+          <p class="fs-4 d-inline-block"><%= @bike.description %></p>
+          <p class="fs-4 d-inline-block mx-3">Price: <%= @bike.price %></p>
+          <%# <%= link_to new_bike_booking_path(@bike), data: {turbo_method: :post} do %>
+            <%# <button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button> %>
+          <%# <% end %>
+          <%= simple_form_for [@bike, @booking] do |f| %>
+            <%= f.button :submit, "Book", class: "btn btn-primary btn-lg d-inline-block" %>
+          <% end %>
+                  </div>
       </div>
-      <div class="col-md-8">
-      <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
-        <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
-        <p class="fs-4 d-inline-block"><%= @bike.description %></p>
-<p class="fs-4 d-inline-block mx-3">Price: <%= @bike.price %></p>
-<button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button>
-      </div>
+        <% if alert %>
+        <div class="flash flash-success alert-center card-slide-up card-bounce" role="alert">
+          <span><strong>Yay!</strong> 🎉 <%= alert %></span>
+          <a data-bs-dismiss="alert" aria-label="Close">
+          </a>
+        </div>
+        <% end %>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const cardElement = document.querySelector(".card");
+            cardElement.classList.add("card-slide-up");
+          });
+        </script>
     </div>
   </div>
 </div>
