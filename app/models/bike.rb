@@ -1,5 +1,6 @@
 class Bike < ApplicationRecord
   belongs_to :user
+  has_many :reviews
   has_many :bookings
   validates :title, presence: true
   validates :description, length: { minimum: 15 }
