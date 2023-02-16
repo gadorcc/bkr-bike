@@ -46,9 +46,9 @@ class BikesController < ApplicationController
   end
 
   def destroy
-    @bike = Bike.find
-    @bike.destroy
-    redirect_to bikes_path, status: :see_other
+    @bike = Bike.find(params[:id])
+    @bike.user = current_user
+    redirect_to bikes_path, status: :see_other if @bike.destroy
   end
 
   private
