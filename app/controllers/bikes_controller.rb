@@ -7,6 +7,14 @@ class BikesController < ApplicationController
     else
       @bikes = Bike.all
     end
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude,
+        marker_window_html: render_to_string(partial: "marker_window", locals: {bike: bike}),
+        marker_icon_html: render_to_string(partial: "marker_icon", locals: {bike: bike})
+      }
+    end
   end
 
   def show
@@ -46,7 +54,7 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo, :query)
+    params.require(:bike).permit(:title, :description, :bike_type, :price, :status, :photo, :query, :bike_postcode2)
   end
 
   def set_bike
