@@ -1,62 +1,101 @@
 <main>
- <div class="container py-4">
-   <%= link_to "< View All Bikes", bikes_path %>
-   <div class="p-5 mb-4 bg-light rounded-3">
-     <div class="container-fluid py-5">
-       <div class="row">
-         <div class="col-md-4">
-           <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
-         </div>
-         <div class="col-md-8">
-         <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
+<div class="container py-4">
+<%= link_to "View All Bikes", bikes_path, class: "btn btn-secondary btn-sm mb-3" %>
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <div class= "containter">
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag cl_image_path(@bike.photo.key, width: 500, height: 500, crop: :fill), class: "img-fluid", alt: "image" %>
+        </div>
+        <div class="col-md-8">
+          <p class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2"><%= @bike.bike_type %></p>
           <div class="row">
-          <div class="col-9">
-            <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
-          </div>
-          <%# Reviews total %>
-          <div class="col-3">
-          <%rating_array = [] %>
-          <% @bike.reviews.each do |review| %>
+            <div class="col-9">
+              <h1 class="display-5 fw-bold"><%= @bike.title %></h1>
+            </div>
+            <div class="col-3">
+            <%rating_array = [] %>
+            <% @bike.reviews.each do |review| %>
             <%rating_array << review.rating %>
-          <% end %>
-          <% if rating_array.length == 0 %>
-            <p>no reviews </p>
-          <% else %>
-          <% total=rating_array.sum/rating_array.length %>
-            <p><i class="bi bi-star-fill"></i> <%=total%><i class="bi bi-dot"></i><%=rating_array.length%> reviews</p>
+            <% end %>
+            <% if rating_array.length == 0 %>
+              <p>no reviews </p>
+            <% else %>
+            <% total=rating_array.sum/rating_array.length %>
+              <p><i class="bi bi-star-fill"></i> <%=total%><i class="bi bi-dot"></i><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><%=rating_array.length%> reviews</button></p>
+
+            <%end%>
             </div>
           </div>
-           <p class="fs-4 d-inline-block"><%= @bike.description %></p>
-           <p class="fs-4 d-inline-block mx-3">Price: £<%= @bike.price.to_i %></p>
-         <button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button>
-          <%end%>
-         <%# Reviews %>
-         <div class="list-group">
-           <% @bike.reviews.each do |review| %>
-             <li class="list-group-item">
-              <small>
-                 <% count = 0 %>
-                 <% 5.times do %>
-                   <% if review.rating > count %>
-                     <i class="fa-solid fa-star"></i>
-                   <% else %>
-                     <i class="fa-regular fa-star"></i>
-                   <% end %>
-                   <% count += 1 %>
-                 <% end %>
-               </small>
-               <p><%= review.content %></p>
-             </li>
-           <% end %>
-         </div>
-       <%= simple_form_for [@bike, @review] do |f| %>
-         <%= f.input :rating, collection: 0..5 %>
-         <%= f.input :content%>
-         <%= f.submit class: 'btn btn-primary' %>
-       <% end %>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
- <main>
+          <p class="fs-4"><%= @bike.description %></p>
+          <p class="fs-4">London, <%= @bike.bike_postcode2 %></p>
+          <p class="fs-4">Price: £<%= @bike.price.to_i %></p>
+          <%# <%= link_to new_bike_booking_path(@bike), data: {turbo_method: :post} do %>
+            <%# <button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button> %>
+          <%# <% end %>
+          <%= simple_form_for [@bike, @booking] do |f| %>
+            <%= f.button :submit, "Book", class: "btn btn-primary btn-lg d-inline-block" %>
+          <% end %>
+                  </div>
+      </div>
+        <% if alert %>
+        <div class="flash flash-success alert-center card-slide-up card-bounce" role="alert">
+          <span><strong>Yay!</strong> 🎉 <%= alert %></span>
+          <a data-bs-dismiss="alert" aria-label="Close">
+          </a>
+        </div>
+        <% end %>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const cardElement = document.querySelector(".card");
+            cardElement.classList.add("card-slide-up");
+          });
+        </script>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title d-flex justify-content-center" id="exampleModalLabel"><p><i class="bi bi-star-fill"></i> <%=total%><i class="bi bi-dot"></i><%=rating_array.length%> reviews</button></p></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <% @bike.reviews.each do |review| %>
+            <li class="list-group-item">
+            <small>
+            <% count = 0 %>
+            <% 5.times do %>
+            <% if review.rating > count %>
+              <i class="fa-solid fa-star"></i>
+            <% else %>
+              <i class="fa-regular fa-star"></i>
+            <% end %>
+              <% count += 1 %>
+              <% end %>
+            </small>
+            <p><%= review.content %></p>
+            <p><%= review.user%><p>
+            </li>
+          <% end %>
+        </div>
+      </div>
+      <div>
+      <div class="modal-footer d-flex align-items-center justify-content-center">
+        <%= simple_form_for [@bike, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit "Add your review", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<main>
