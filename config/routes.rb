@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   resources :bikes do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
   end
 end
