@@ -29,15 +29,23 @@
             <p class="fs-4"><%= @bike.description %></p>
             <p class="fs-4">London, <%= @bike.bike_postcode2 %></p>
             <p class="fs-4">Price: £<%= @bike.price.to_i %></p>
-            <%# <%= link_to new_bike_booking_path(@bike), data: {turbo_method: :post} do %>
-              <%# <button class="btn btn-primary btn-lg d-inline-block" type="button" data-toggle="modal" data-target="#bookingModal">Book</button> %>
-            <%# <% end %>
-            <%= simple_form_for [@bike, @booking] do |f| %>
-            <%= f.button :submit, "Book", class: "btn btn-primary btn-lg d-inline-block" %>
-            <% end %>
-            <%# delete the code below when needed %>
-            <%= button_to 'Delete', bike_path(@bike), method: :delete, data: { confirm: 'Are you sure?' } %>
-
+            <div class="container mt-4">
+              <div class="row">
+                <div class="col-6 m-auto">
+                  <div class="bike-form">
+                    <h1>Select a date</h1>
+                    <div class="mt-3">
+                      <div class="container mt-4">
+                        <div class="row mt-4">
+                          <%= render "share/flatpickr", bike: @bike, booking: @booking %>
+                                      <%= button_to 'Delete', bike_path(@bike), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-secondary' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
