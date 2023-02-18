@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :bikes do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
   end
 end

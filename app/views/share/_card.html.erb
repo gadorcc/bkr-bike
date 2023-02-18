@@ -16,10 +16,20 @@
         <br>
         <%= bike.description %>
       <div class="row">
-        <div class="col">
-          <p class="card-text"><%= number_to_currency bike.price, unit: "£" %>
-          </p>
+        <div class="col-6">
+          <p class="card-text"><%= number_to_currency bike.price, unit: "£" %></p>
         </div>
+        <div class="col-6">
+          <%rating_array = [] %>
+          <% bike.reviews.each do |review| %>
+          <%rating_array << review.rating %>
+          <% end %>
+          <% if rating_array.length >0 %>
+          <% total=rating_array.sum/rating_array.length %>
+          <p><i class="bi bi-star-fill"></i> <%=total%></p>
+          <%end%>
+        </div>
+
       </div>
     </div>
   </div>
