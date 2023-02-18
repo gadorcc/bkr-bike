@@ -1,4 +1,5 @@
-<%= simple_form_for(@bike) do |f| %>
-  <%= f.inline: true %>
-  <%= f.submit class: "btn btn-primary" %>
+<%= simple_form_for([bike, booking], data: { controller: 'flatpickr' }) do |f| %>
+   <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startDate" } } %>
+  <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endDate" } } %>
+  <%= f.submit 'Schedule your appointment' %>
 <% end %>

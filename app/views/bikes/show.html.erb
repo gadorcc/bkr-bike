@@ -19,7 +19,11 @@
       <div class="bike-form">
         <h1>Select a date</h1>
         <div class="mt-3">
-          <%= render "share/form" %>
+          <div class="container mt-4">
+            <div class="row mt-4">
+              <%= render "share/flatpickr", bike: @bike, booking: @booking %>
+            </div>
+          </div>
         </div>
       </div>
       <%= link_to "View All Bikes", bikes_path %>

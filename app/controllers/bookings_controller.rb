@@ -7,7 +7,13 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.user = current_user
     @booking.bike = @bike
+
+    if @booking.save
+      flash[:alert] = 'Booking confirmed'
+      redirect_to bike_path(@bike)
+    end
   end
 
   private
