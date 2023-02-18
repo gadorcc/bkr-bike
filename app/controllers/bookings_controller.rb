@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(start_date: "2023-02-17", end_date: "2023-02-16")
+    @booking = Booking.new(start_date: "2023-02-16", end_date: "2023-02-17")
     @booking.bike = @bike
     @booking.user = current_user
     if @booking.save!
@@ -14,6 +14,15 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def checkout
+    @bookings = current_user.bookings
+    @titles = @bookings.includes(:user).map { |booking| Bike.find(booking.bike_id).title }
+  end
+
+  def index
+    @bookings = Booking.all
   end
 
   private
