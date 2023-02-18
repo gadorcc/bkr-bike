@@ -1,6 +1,6 @@
 class Bike < ApplicationRecord
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :delete_all
   has_many :reviews
   validates :title, presence: true
   validates :bike_postcode2, presence: true

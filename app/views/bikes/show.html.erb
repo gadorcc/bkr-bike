@@ -35,6 +35,9 @@
             <%= simple_form_for [@bike, @booking] do |f| %>
             <%= f.button :submit, "Book", class: "btn btn-primary btn-lg d-inline-block" %>
             <% end %>
+            <%# delete the code below when needed %>
+            <%= button_to 'Delete', bike_path(@bike), method: :delete, data: { confirm: 'Are you sure?' } %>
+
           </div>
 
         </div>
