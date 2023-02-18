@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "book-a-bike-logo.png" %>
+      <%= image_tag "book-bike-logo.png" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +12,10 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <a class="btn btn-outline-primary my-2 my-sm-0 ms-2" href="/bikes/new">Add Bike</a>
+            <a class="btn btn-outline-light my-2 my-sm-0 ms-2" href="/bikes/new">Add Bike</a>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "otis.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -27,7 +27,7 @@
           </li>
         <% else %>
           <!--li class="nav-item"-->
-            <a class="btn btn-outline-primary my-2 my-sm-0 ms-2" href="/users/sign_up">Add Bike</a>
+            <a class="btn btn-outline-light my-2 my-sm-0 ms-2" href="/users/sign_up">Add Bike</a>
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           <!--/li-->
         <% end %>
