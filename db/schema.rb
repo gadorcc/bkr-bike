@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_122530) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_02_18_121541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_122530) do
     t.string "bike_postcode2"
     t.float "latitude"
     t.float "longitude"
-    t.boolean "available"
     t.index ["user_id"], name: "index_bikes_on_user_id"
   end
 
@@ -74,9 +71,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_122530) do
   create_table "reviews", force: :cascade do |t|
     t.text "content"
     t.integer "rating"
+    t.bigint "bike_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.index ["bike_id"], name: "index_reviews_on_bike_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -100,5 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_122530) do
   add_foreign_key "bikes", "users"
   add_foreign_key "bookings", "bikes"
   add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "bikes"
   add_foreign_key "reviews", "users"
 end
