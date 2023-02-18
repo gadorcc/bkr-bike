@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/checkout", to: "bookings#checkout"
+
   resources :bikes do
     resources :bookings, only: [:new, :create]
   end

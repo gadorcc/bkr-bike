@@ -5,5 +5,5 @@ class Booking < ApplicationRecord
   has_many :users
   has_one_attached :photo
   validates :start_date, :end_date, presence: true
-  validates :start_date, comparison: { greater_than: :end_date }
+  validates :start_date, comparison: { less_than: :end_date }
 end
