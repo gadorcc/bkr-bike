@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(start_date: "2023-02-16", end_date: "2023-02-17")
+    @booking = Booking.new(booking_params)
     @booking.bike = @bike
     @booking.user = current_user
     if @booking.save!
