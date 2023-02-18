@@ -1,0 +1,15 @@
+
+<h1>Booked Bikes</h1>
+
+<% if @titles.present? %>
+  <ul>
+    <% @titles.each do |title| %>
+      <li><%= title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No bookings found for this bike.</p>
+<% end %>
+
+<%= link_to "Back to Bikes", bikes_path, class: "btn btn-secondary btn-sm" %>
+<%= link_to "Checkout", checkout_path, class: "btn btn-primary" %>
