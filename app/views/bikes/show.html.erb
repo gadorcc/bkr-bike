@@ -19,7 +19,7 @@
                 <%rating_array << review.rating %>
                 <% end %>
                 <% if rating_array.length == 0 %>
-                <p>no reviews </p>
+                <p><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">add a review</button></p>
                 <% else %>
                 <% total=rating_array.sum/rating_array.length %>
                 <p><i class="bi bi-star-fill"></i> <%=total%><i class="bi bi-dot"></i><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><%=rating_array.length%> reviews</button></p>
@@ -79,7 +79,7 @@
               <% end %>
             </small>
             <p><%= review.content %></p>
-            <%# <p><%= review.user%><p>
+            <%# <p><%= @user.user_id %>
             </li>
           <% end %>
         </div>
